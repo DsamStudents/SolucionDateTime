@@ -1,4 +1,7 @@
-﻿namespace AppDateTime
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace AppDateTime
 {
     partial class Form1
     {
