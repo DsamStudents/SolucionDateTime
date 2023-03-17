@@ -8,7 +8,7 @@ namespace AppDateTime
 {
     public class Estudiante
     {
-        public string Nombre { get; set; }
+        public string? Nombre { get; set; }
         public DateTime FechaNacimiento { get; set; }
 
     }

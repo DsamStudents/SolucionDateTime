@@ -1,3 +1,7 @@
+using AppDateTime.Helper;
+using System;
+using System.Windows.Forms;
+
 namespace AppDateTime
 {
     public partial class Form1 : Form
@@ -33,14 +37,27 @@ namespace AppDateTime
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DtFechaNacimiento.MaxDate = DateTime.Now;
+            //DtFechaNacimiento.MaxDate = DateTime.Now;
         }
 
         private void BtCrear_Click(object sender, EventArgs e)
         {
-            var estudiante=new Estudiante();
-            estudiante.Nombre = TbNombre.Text;
-            estudiante.FechaNacimiento = DtFechaNacimiento.Value;
+            try
+            {
+                var estudiante = new Estudiante();
+                if (string.IsNullOrEmpty(TbNombre.Text))
+                {
+                    throw new Exception(Utilidad.ERRORNAMEEMPTY);
+                }
+                estudiante.Nombre = TbNombre.Text;
+                estudiante.FechaNacimiento = DtFechaNacimiento.Value;
+                var edad = Utilidad.CalcularEdad(DtFechaNacimiento.Value);
+                MessageBox.Show("La edad del estudiante es " + edad);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Utilidad.ERROR01+" "+ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
     }
 }
